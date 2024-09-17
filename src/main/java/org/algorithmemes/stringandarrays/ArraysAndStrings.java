@@ -1,6 +1,5 @@
 package org.algorithmemes.stringandarrays;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,7 +25,7 @@ public class ArraysAndStrings {
         Map<Character, Integer> map = new HashMap<>();
 
         for (int i = 0; i < s.length(); i++) {
-            Character c = s.charAt(i);
+            Character c = (Character) s.charAt(i);
             Integer count = map.get(c);
 
             if (count == null)
@@ -36,5 +35,33 @@ public class ArraysAndStrings {
         }
 
         return true;
+    }
+
+    public static String URLfy(String s) {
+        s = s.trim();
+        char[] result = new char[s.length() - countSpaces(s) + countSpaces(s) * 3];
+
+        int sIndex = -1;
+
+        for (int i = 0; i < s.length(); i++)
+            if (s.charAt(i) == ' ') {
+                result[++sIndex] = '%';
+                result[++sIndex] = '2';
+                result[++sIndex] = '0';
+            } else {
+                result[++sIndex] = s.charAt(i);
+            }
+
+        return String.copyValueOf(result);
+    }
+
+
+    private static int countSpaces(String s) {
+        int spaces = 0;
+
+        for (int i = 0; i < s.length(); i++)
+            if (s.charAt(i) == ' ')
+                spaces++;
+        return spaces;
     }
 }

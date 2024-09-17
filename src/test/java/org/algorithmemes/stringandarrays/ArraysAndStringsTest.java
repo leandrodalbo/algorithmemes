@@ -19,4 +19,9 @@ public class ArraysAndStringsTest {
         assertThat(ArraysAndStrings.isAllUniqueChars("abbc")).isFalse();
         assertThat(ArraysAndStrings.isAllUniqueChars("abc")).isTrue();
     }
+
+    @Test
+    public void shouldURLfyAString() {
+        assertThat(ArraysAndStrings.URLfy("Mr John Smith   ")).isEqualTo("Mr%20John%20Smith");
+    }
 }
