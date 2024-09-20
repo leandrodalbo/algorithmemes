@@ -24,4 +24,11 @@ public class ArraysAndStringsTest {
     public void shouldURLfyAString() {
         assertThat(ArraysAndStrings.URLfy("Mr John Smith   ")).isEqualTo("Mr%20John%20Smith");
     }
+
+    @Test
+    public void shouldCheckStringPermutations() {
+        assertThat(ArraysAndStrings.isAPalindromePermutation("carerac")).isEqualTo(true);
+        assertThat(ArraysAndStrings.isAPalindromePermutation("aab")).isEqualTo(true);
+        assertThat(ArraysAndStrings.isAPalindromePermutation("code")).isEqualTo(false);
+    }
 }

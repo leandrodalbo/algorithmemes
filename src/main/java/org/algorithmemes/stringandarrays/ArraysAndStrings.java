@@ -5,6 +5,11 @@ import java.util.Map;
 
 public class ArraysAndStrings {
 
+    public static boolean isAPalindromePermutation(String s) {
+        return maxOneIsOdd(charFrequencies(s));
+    }
+
+
     public static boolean isPermutation(String a, String b) {
 
         if (a.length() != b.length())
@@ -63,5 +68,39 @@ public class ArraysAndStrings {
             if (s.charAt(i) == ' ')
                 spaces++;
         return spaces;
+    }
+
+    private static int getCharNumValue(Character character) {
+        int a = Character.getNumericValue('a');
+        int z = Character.getNumericValue('z');
+        int val = Character.getNumericValue(character);
+
+        if (val >= a && val <= z)
+            return val - a;
+
+        return -1;
+    }
+
+    private static int[] charFrequencies(String s) {
+        int[] table = new int[Character.getNumericValue('z') - Character.getNumericValue('a') + 1];
+
+        for (char c : s.toCharArray()) {
+            int x = getCharNumValue(c);
+            if (x != -1) {
+                table[x]++;
+            }
+        }
+        return table;
+    }
+
+    private static boolean maxOneIsOdd(int[] ints) {
+        int oddCount = 0;
+        for (int i : ints) {
+            if (i % 2 != 0)
+                oddCount++;
+            if (oddCount > 1)
+                return false;
+        }
+        return true;
     }
 }
